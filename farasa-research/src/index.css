@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Mega:wght@400..900&family=Inter:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-logo: "Lexend Mega", sans-serif;
+  --color-app-bg: #151623;
+  --color-app-card: #1E2032;
+  --color-text-muted: #8F95B2;
+  --color-grad-start: #E93B81;
+  --color-grad-end: #F5A623;
+  --color-app-border: rgba(255, 255, 255, 0.08);
+  --background-image-brand-gradient: linear-gradient(90deg, #E93B81, #F5A623);
+}
+
+@layer base {
+  body {
+    @apply bg-app-bg text-white font-sans antialiased selection:bg-grad-start/30;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  body::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer components {
+  .text-gradient {
+    @apply bg-brand-gradient bg-clip-text text-transparent;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Professional Polish Research Card Styles */
+  .research-card {
+    @apply bg-app-card border border-app-border rounded-[24px] p-5 sm:p-10 shadow-2xl;
+  }
+}
+
+/* Markdown Content Refinement */
+.markdown-content p {
+  @apply mb-6 leading-[1.7] text-text-muted text-[15px];
+}
+
+.markdown-content strong, 
+.markdown-content b {
+  @apply text-white font-semibold;
+}
+
+.markdown-content ul, 
+.markdown-content ol {
+  @apply mb-6 pl-5 text-text-muted leading-[1.7];
+}
+
+.markdown-content li {
+  @apply mb-4;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3 {
+  @apply text-white font-bold mb-4 mt-8 first:mt-0 flex items-center gap-3;
+}
+
+.markdown-content table {
+  @apply w-full mb-8 border-collapse border border-white/5 text-sm table-auto;
+}
+
+.markdown-content th,
+.markdown-content td {
+  @apply border border-white/5 p-3 text-left;
+}
+
+.markdown-content th {
+  @apply bg-white/5 font-bold text-white;
+}
+
+.markdown-content td {
+  @apply text-text-muted transition-colors;
+}
+
+/* Custom Header Prefix from Theme */
+.markdown-content h2::before {
+  content: '◈';
+  @apply text-transparent bg-brand-gradient bg-clip-text mr-2;
+}
+
+.markdown-content h2 { @apply text-xl; }
+.markdown-content h3 { @apply text-lg; }
+
+/* Responsive Table Wrapper */
+.table-wrapper {
+  @apply w-full overflow-x-auto mb-8 border border-white/5 rounded-xl bg-white/[0.02];
+}
+.table-wrapper table {
+  @apply mb-0 border-none;
+}
+
+/* Arabic Text Recognition (Best effort via RTL and character set detection if possible, or common tags) */
+.markdown-content blockquote {
+  @apply bg-white/3 border-l-4 border-grad-start p-5 rounded-xl my-6 text-lg italic text-white/90;
+}
+
+/* Target elements that likely contain Arabic */
+.markdown-content [dir="rtl"] {
+  @apply font-serif text-2xl text-right leading-loose bg-white/3 p-5 rounded-xl my-4 text-white;
+}
